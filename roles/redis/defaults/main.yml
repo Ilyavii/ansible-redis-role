@@ -1,22 +1,6 @@
 ---
-# Defaults for the redis role.
-# Every value can be overridden in group_vars/host_vars or via extra-vars.
-
-# Network
 redis_port: 6379
-
-# Data directory (must exist before the service starts)
 redis_dir: /var/lib/redis
-
-# Number of logical databases
 redis_databases: 16
-
-# Persistence: append-only file
 redis_appendonly: "yes"
-
-# Password for AUTH. Use Ansible Vault in real environments!
-# Set via vault, e.g. group_vars/all/vault.yml with
-#   vault_redis_password: "s3cr3t"
-# and here:
-#   redis_password: "{{ vault_redis_password }}"
 redis_password: "changeme"
