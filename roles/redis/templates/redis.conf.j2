@@ -1,0 +1,9 @@
+port {{ redis_port }}
+bind 127.0.0.1
+dir {{ redis_dir }}
+databases {{ redis_databases }}
+requirepass {{ redis_password }}
+appendonly {{ redis_appendonly }}
+protected-mode yes
+daemonize no
+supervised systemd

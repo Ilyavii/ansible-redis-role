@@ -1,0 +1,7 @@
+---
+- name: Install and configure Redis
+  hosts: redis
+  become: true
+
+  roles:
+    - redis
