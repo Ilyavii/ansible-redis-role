@@ -1,0 +1,4 @@
+redis_port: 6379
+redis_databases: 16
+redis_dir: /var/lib/redis
+redis_appendonly: "yes"

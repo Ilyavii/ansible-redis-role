@@ -1,0 +1,35 @@
+---
+- name: Fail on non-Debian systems
+  fail:
+    msg: "This role supports only Debian-family systems (ansible_os_family == 'Debian')."
+  when: ansible_os_family != "Debian"
+
+- name: Install Redis
+  apt:
+    name: redis-server
+    state: present
+    update_cache: true
+
+- name: Ensure Redis data directory exists
+  file:
+    path: "{{ redis_dir }}"
+    state: directory
+    owner: redis
+    group: redis
+    mode: "0750"
+
+- name: Deploy Redis configuration
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis/redis.conf
+    owner: root
+    group: redis
+    mode: "0640"
+  notify:
+    - Restart Redis
+
+- name: Ensure Redis service is started and enabled
+  service:
+    name: redis-server
+    state: started
+    enabled: true
